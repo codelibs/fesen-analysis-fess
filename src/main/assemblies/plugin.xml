@@ -20,7 +20,7 @@
 			<useProjectArtifact>true</useProjectArtifact>
 			<useTransitiveFiltering>true</useTransitiveFiltering>
 			<excludes>
-				<exclude>org.codelibs.fesen:elasticsearch</exclude>
+				<exclude>org.codelibs.fesen:fesen-engine-server</exclude>
 			</excludes>
 		</dependencySet>
 	</dependencySets>
