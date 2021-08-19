@@ -33,7 +33,7 @@ import org.codelibs.fesen.index.analysis.TokenizerFactory;
 public class ReloadableJapaneseTokenizerFactory extends AbstractTokenizerFactory {
 
     private static final String[] FACTORIES = new String[] { //
-            "org.codelibs.fesen.extension.kuromoji.index.analysis.KuromojiBaseFormFilterFactory" };
+            "org.codelibs.fesen.extension.analysis.ReloadableKuromojiTokenizerFactory" };
 
     private TokenizerFactory tokenizerFactory = null;
 
