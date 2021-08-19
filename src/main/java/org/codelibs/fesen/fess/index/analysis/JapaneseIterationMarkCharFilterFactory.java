@@ -32,9 +32,7 @@ import org.codelibs.fesen.index.analysis.CharFilterFactory;
 public class JapaneseIterationMarkCharFilterFactory extends AbstractCharFilterFactory {
 
     private static final String[] FACTORIES = new String[] { //
-            "org.codelibs.elasticsearch.kuromoji.neologd.index.analysis.KuromojiIterationMarkCharFilterFactory",
-            "org.codelibs.elasticsearch.extension.analysis.KuromojiIterationMarkCharFilterFactory",
-            "org.codelibs.elasticsearch.ja.analysis.KuromojiIterationMarkCharFilterFactory" };
+            "org.codelibs.fesen.extension.kuromoji.index.analysis.KuromojiIterationMarkCharFilterFactory" };
 
     private CharFilterFactory charFilterFactory = null;
 

@@ -32,9 +32,7 @@ import org.codelibs.fesen.index.analysis.TokenFilterFactory;
 public class JapanesePartOfSpeechFilterFactory extends AbstractTokenFilterFactory {
 
     private static final String[] FACTORIES = new String[] { //
-            "org.codelibs.elasticsearch.kuromoji.neologd.index.analysis.KuromojiPartOfSpeechFilterFactory",
-            "org.codelibs.elasticsearch.extension.analysis.KuromojiPartOfSpeechFilterFactory",
-            "org.codelibs.elasticsearch.ja.analysis.KuromojiPartOfSpeechFilterFactory" };
+            "org.codelibs.fesen.extension.kuromoji.index.analysis.KuromojiPartOfSpeechFilterFactory" };
 
     private TokenFilterFactory tokenFilterFactory = null;
 

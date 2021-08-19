@@ -32,7 +32,8 @@ import org.codelibs.fesen.index.analysis.TokenizerFactory;
 
 public class ChineseTokenizerFactory extends AbstractTokenizerFactory {
 
-    private static final String FACTORY = "org.codelibs.fesen.index.analysis.SmartChineseTokenizerTokenizerFactory";
+    // TODO Fesen support
+    private static final String FACTORY = "org.elasticsearch.index.analysis.SmartChineseTokenizerTokenizerFactory";
 
     private TokenizerFactory tokenizerFactory = null;
 

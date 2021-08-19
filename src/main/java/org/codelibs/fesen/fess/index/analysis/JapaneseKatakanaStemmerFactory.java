@@ -32,9 +32,7 @@ import org.codelibs.fesen.index.analysis.TokenFilterFactory;
 public class JapaneseKatakanaStemmerFactory extends AbstractTokenFilterFactory {
 
     private static final String[] FACTORIES = new String[] { //
-            "org.codelibs.elasticsearch.kuromoji.neologd.index.analysis.KuromojiKatakanaStemmerFactory",
-            "org.codelibs.elasticsearch.extension.analysis.KuromojiKatakanaStemmerFactory",
-            "org.codelibs.elasticsearch.ja.analysis.KuromojiKatakanaStemmerFactory" };
+            "org.codelibs.fesen.extension.kuromoji.index.analysis.KuromojiKatakanaStemmerFactory" };
 
     private TokenFilterFactory tokenFilterFactory;
 

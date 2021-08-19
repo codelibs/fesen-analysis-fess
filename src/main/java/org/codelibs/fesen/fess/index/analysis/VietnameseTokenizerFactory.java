@@ -32,6 +32,7 @@ import org.codelibs.fesen.index.analysis.TokenizerFactory;
 
 public class VietnameseTokenizerFactory extends AbstractTokenizerFactory {
 
+    // TODO Fesen support
     private static final String FACTORY = "org.codelibs.elasticsearch.vi.analysis.VietnameseTokenizerFactory";
 
     private TokenizerFactory tokenizerFactory = null;

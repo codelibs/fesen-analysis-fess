@@ -32,7 +32,8 @@ import org.codelibs.fesen.index.analysis.TokenizerFactory;
 
 public class KoreanTokenizerFactory extends AbstractTokenizerFactory {
 
-    private static final String FACTORY = "org.codelibs.fesen.index.analysis.NoriTokenizerFactory";
+    // TODO Fesen support
+    private static final String FACTORY = "org.elasticsearch.index.analysis.NoriTokenizerFactory";
 
     private TokenizerFactory tokenizerFactory = null;
 
