@@ -18,7 +18,7 @@ import org.codelibs.fesen.common.xcontent.XContentType;
 import org.codelibs.fesen.index.query.QueryBuilders;
 import org.codelibs.fesen.node.Node;
 import org.codelibs.fesen.runner.FesenRunner;
-import org.codelibs.fesen.runner.net.EcrCurl;
+import org.codelibs.fesen.runner.net.FesenCurl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -101,10 +101,10 @@ public class FessAnalysisPluginTest {
 
         assertDocCount(0, index, "msg", "東京スカイツリー");
 
-        try (CurlResponse response = EcrCurl.post(node, "/" + index + "/_analyze").header("Content-Type", "application/json")
+        try (CurlResponse response = FesenCurl.post(node, "/" + index + "/_analyze").header("Content-Type", "application/json")
                 .body("{\"text\":\"東京スカイツリー\",\"analyzer\":\"ja_analyzer\"}").execute()) {
             @SuppressWarnings("unchecked")
-            List<Map<String, Object>> tokens = (List<Map<String, Object>>) response.getContent(EcrCurl.jsonParser()).get("tokens");
+            List<Map<String, Object>> tokens = (List<Map<String, Object>>) response.getContent(FesenCurl.jsonParser()).get("tokens");
             assertEquals(0, tokens.size());
         }
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.codelibs.fesen.ElasticsearchException;
+import org.codelibs.fesen.FesenException;
 import org.codelibs.fesen.common.component.AbstractLifecycleComponent;
 import org.codelibs.fesen.common.inject.Inject;
 import org.codelibs.fesen.common.settings.Settings;
@@ -32,7 +32,7 @@ public class FessAnalysisService extends AbstractLifecycleComponent {
     }
 
     @Override
-    protected void doStart() throws ElasticsearchException {
+    protected void doStart() throws FesenException {
         logger.debug("Starting FessAnalysisService");
 
         plugins = loadPlugins();
@@ -46,18 +46,18 @@ public class FessAnalysisService extends AbstractLifecycleComponent {
                 pluginsField.setAccessible(true);
                 return (List<Tuple<PluginInfo, Plugin>>) pluginsField.get(pluginsService);
             } catch (final Exception e) {
-                throw new ElasticsearchException("Failed to access plugins in PluginsService.", e);
+                throw new FesenException("Failed to access plugins in PluginsService.", e);
             }
         });
     }
 
     @Override
-    protected void doStop() throws ElasticsearchException {
+    protected void doStop() throws FesenException {
         logger.debug("Stopping FessAnalysisService");
     }
 
     @Override
-    protected void doClose() throws ElasticsearchException {
+    protected void doClose() throws FesenException {
         logger.debug("Closing FessAnalysisService");
     }
 

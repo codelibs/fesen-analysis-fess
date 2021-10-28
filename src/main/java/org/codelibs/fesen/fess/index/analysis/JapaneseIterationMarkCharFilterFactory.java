@@ -21,7 +21,7 @@ import java.lang.reflect.Constructor;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
-import org.codelibs.fesen.ElasticsearchException;
+import org.codelibs.fesen.FesenException;
 import org.codelibs.fesen.common.settings.Settings;
 import org.codelibs.fesen.env.Environment;
 import org.codelibs.fesen.fess.service.FessAnalysisService;
@@ -52,7 +52,7 @@ public class JapaneseIterationMarkCharFilterFactory extends AbstractCharFilterFa
                                 charFilterFactoryClass.getConstructor(IndexSettings.class, Environment.class, String.class, Settings.class);
                         return (CharFilterFactory) constructor.newInstance(indexSettings, env, name, settings);
                     } catch (final Exception e) {
-                        throw new ElasticsearchException("Failed to load " + factoryClass, e);
+                        throw new FesenException("Failed to load " + factoryClass, e);
                     }
                 });
                 break;

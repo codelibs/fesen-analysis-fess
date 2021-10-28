@@ -21,7 +21,7 @@ import java.security.AccessController;
 import java.security.PrivilegedAction;
 
 import org.apache.lucene.analysis.TokenStream;
-import org.codelibs.fesen.ElasticsearchException;
+import org.codelibs.fesen.FesenException;
 import org.codelibs.fesen.common.settings.Settings;
 import org.codelibs.fesen.env.Environment;
 import org.codelibs.fesen.fess.service.FessAnalysisService;
@@ -52,7 +52,7 @@ public class JapaneseKatakanaStemmerFactory extends AbstractTokenFilterFactory {
                                 tokenizerFactoryClass.getConstructor(IndexSettings.class, Environment.class, String.class, Settings.class);
                         return (TokenFilterFactory) constructor.newInstance(indexSettings, env, name, settings);
                     } catch (final Exception e) {
-                        throw new ElasticsearchException("Failed to load " + factoryClass, e);
+                        throw new FesenException("Failed to load " + factoryClass, e);
                     }
 
                 });
