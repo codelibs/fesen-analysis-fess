@@ -31,7 +31,7 @@ import org.codelibs.fesen.index.analysis.TokenFilterFactory;
 
 public class JapaneseKatakanaStemmerFactory extends AbstractTokenFilterFactory {
 
-    private static final String[] FACTORIES = new String[] { //
+    private static final String[] FACTORIES = { //
             "org.codelibs.fesen.extension.kuromoji.index.analysis.KuromojiKatakanaStemmerFactory" };
 
     private TokenFilterFactory tokenFilterFactory;
@@ -57,7 +57,8 @@ public class JapaneseKatakanaStemmerFactory extends AbstractTokenFilterFactory {
 
                 });
                 break;
-            } else if (logger.isDebugEnabled()) {
+            }
+            if (logger.isDebugEnabled()) {
                 logger.debug("{} is not found.", factoryClass);
             }
         }

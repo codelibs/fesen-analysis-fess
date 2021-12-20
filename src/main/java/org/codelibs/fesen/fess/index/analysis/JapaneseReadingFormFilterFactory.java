@@ -31,7 +31,7 @@ import org.codelibs.fesen.index.analysis.TokenFilterFactory;
 
 public class JapaneseReadingFormFilterFactory extends AbstractTokenFilterFactory {
 
-    private static final String[] FACTORIES = new String[] { //
+    private static final String[] FACTORIES = { //
             "org.codelibs.fesen.extension.kuromoji.index.analysis.KuromojiReadingFormFilterFactory" };
 
     private TokenFilterFactory tokenFilterFactory = null;
@@ -56,7 +56,8 @@ public class JapaneseReadingFormFilterFactory extends AbstractTokenFilterFactory
                     }
                 });
                 break;
-            } else if (logger.isDebugEnabled()) {
+            }
+            if (logger.isDebugEnabled()) {
                 logger.debug("{} is not found.", factoryClass);
             }
         }

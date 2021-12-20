@@ -32,7 +32,7 @@ import org.codelibs.fesen.index.analysis.TokenizerFactory;
 
 public class ReloadableJapaneseTokenizerFactory extends AbstractTokenizerFactory {
 
-    private static final String[] FACTORIES = new String[] { //
+    private static final String[] FACTORIES = { //
             "org.codelibs.fesen.extension.analysis.ReloadableKuromojiTokenizerFactory" };
 
     private TokenizerFactory tokenizerFactory = null;
@@ -57,7 +57,8 @@ public class ReloadableJapaneseTokenizerFactory extends AbstractTokenizerFactory
                     }
                 });
                 break;
-            } else if (logger.isDebugEnabled()) {
+            }
+            if (logger.isDebugEnabled()) {
                 logger.debug("{} is not found.", factoryClass);
             }
         }

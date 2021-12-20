@@ -11,7 +11,6 @@ import org.codelibs.fesen.action.DocWriteResponse.Result;
 import org.codelibs.fesen.action.index.IndexResponse;
 import org.codelibs.fesen.action.search.SearchResponse;
 import org.codelibs.fesen.common.settings.Settings;
-import org.codelibs.fesen.common.settings.Settings.Builder;
 import org.codelibs.fesen.common.xcontent.XContentBuilder;
 import org.codelibs.fesen.common.xcontent.XContentFactory;
 import org.codelibs.fesen.common.xcontent.XContentType;
@@ -27,9 +26,9 @@ public class FessAnalysisPluginTest {
 
     private FesenRunner runner;
 
-    private int numOfNode = 1;
+    private final int numOfNode = 1;
 
-    private int numOfDocs = 1000;
+    private final int numOfDocs = 1000;
 
     private String clusterName;
 
@@ -37,17 +36,13 @@ public class FessAnalysisPluginTest {
     public void setUp() throws Exception {
         clusterName = "es-kuromojineologd-" + System.currentTimeMillis();
         runner = new FesenRunner();
-        runner.onBuild(new FesenRunner.Builder() {
-            @Override
-            public void build(final int number, final Builder settingsBuilder) {
-                settingsBuilder.put("http.cors.enabled", true);
-                settingsBuilder.put("http.cors.allow-origin", "*");
-                settingsBuilder.put("discovery.type", "single-node");
-                // settingsBuilder.putList("discovery.seed_hosts", "127.0.0.1:9301");
-                // settingsBuilder.putList("cluster.initial_master_nodes", "127.0.0.1:9301");
-            }
-        }).build(newConfigs().clusterName(clusterName).numOfNode(numOfNode)
-                .pluginTypes("org.codelibs.fesen.fess.FessAnalysisPlugin"));
+        runner.onBuild((number, settingsBuilder) -> {
+            settingsBuilder.put("http.cors.enabled", true);
+            settingsBuilder.put("http.cors.allow-origin", "*");
+            settingsBuilder.put("discovery.type", "single-node");
+            // settingsBuilder.putList("discovery.seed_hosts", "127.0.0.1:9301");
+            // settingsBuilder.putList("cluster.initial_master_nodes", "127.0.0.1:9301");
+        }).build(newConfigs().clusterName(clusterName).numOfNode(numOfNode).pluginTypes("org.codelibs.fesen.fess.FessAnalysisPlugin"));
     }
 
     @After
@@ -60,7 +55,7 @@ public class FessAnalysisPluginTest {
     public void test_japanese() throws Exception {
 
         runner.ensureYellow();
-        Node node = runner.node();
+        final Node node = runner.node();
 
         final String index = "dataset";
         final String type = "item";
@@ -104,15 +99,14 @@ public class FessAnalysisPluginTest {
         try (CurlResponse response = FesenCurl.post(node, "/" + index + "/_analyze").header("Content-Type", "application/json")
                 .body("{\"text\":\"東京スカイツリー\",\"analyzer\":\"ja_analyzer\"}").execute()) {
             @SuppressWarnings("unchecked")
-            List<Map<String, Object>> tokens = (List<Map<String, Object>>) response.getContent(FesenCurl.jsonParser()).get("tokens");
+            final List<Map<String, Object>> tokens = (List<Map<String, Object>>) response.getContent(FesenCurl.jsonParser()).get("tokens");
             assertEquals(0, tokens.size());
         }
 
     }
 
-    private void assertDocCount(int expected, final String index, final String field, final String value) {
-        final SearchResponse searchResponse =
-                runner.search(index, QueryBuilders.matchPhraseQuery(field, value), null, 0, numOfDocs);
+    private void assertDocCount(final int expected, final String index, final String field, final String value) {
+        final SearchResponse searchResponse = runner.search(index, QueryBuilders.matchPhraseQuery(field, value), null, 0, numOfDocs);
         assertEquals(expected, searchResponse.getHits().getTotalHits().value);
     }
 }

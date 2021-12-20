@@ -31,7 +31,7 @@ import org.codelibs.fesen.index.analysis.CharFilterFactory;
 
 public class JapaneseIterationMarkCharFilterFactory extends AbstractCharFilterFactory {
 
-    private static final String[] FACTORIES = new String[] { //
+    private static final String[] FACTORIES = { //
             "org.codelibs.fesen.extension.kuromoji.index.analysis.KuromojiIterationMarkCharFilterFactory" };
 
     private CharFilterFactory charFilterFactory = null;
@@ -56,7 +56,8 @@ public class JapaneseIterationMarkCharFilterFactory extends AbstractCharFilterFa
                     }
                 });
                 break;
-            } else if (logger.isDebugEnabled()) {
+            }
+            if (logger.isDebugEnabled()) {
                 logger.debug("{} is not found.", factoryClass);
             }
         }
